@@ -4,16 +4,14 @@ class App extends Component {
   render() {
     return (
       <div>
-        <nav className="navbar navbar-dark bg-dark">
+        <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
           <div className="container">
-            <div className="navbar-header">
-              <a href="/" className="navbar-brand">Gerenciador de Produtos</a>
-            </div>
-            <ul className="nav navbar-nav">
-              <li><a href="/">about</a></li>
-              <li><a href="/">about</a></li>
-              <li><a href="/">about</a></li>
-              <li><a href="/">about</a></li>
+            <a href="/" className="navbar-brand">Gerenciador de Produtos</a>
+            <ul className="navbar-nav ">
+              <li className="nav-item"><a href="/" className="nav-link">about</a></li>
+              <li className="nav-item"><a href="/" className="nav-link">about</a></li>
+              <li className="nav-item"><a href="/" className="nav-link">about</a></li>
+              <li className="nav-item"><a href="/" className="nav-link">about</a></li>
             </ul>
           </div>
         </nav>
