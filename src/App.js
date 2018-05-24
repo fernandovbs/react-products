@@ -3,13 +3,23 @@ import React, { Component } from 'react'
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Products</h1>
-        </header>
-        <p className="App-intro">
-          Base
-        </p>
+      <div>
+        <nav className="navbar navbar-dark bg-dark">
+          <div className="container">
+            <div className="navbar-header">
+              <a href="/" className="navbar-brand">Gerenciador de Produtos</a>
+            </div>
+            <ul className="nav navbar-nav">
+              <li><a href="/">about</a></li>
+              <li><a href="/">about</a></li>
+              <li><a href="/">about</a></li>
+              <li><a href="/">about</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div className="container">
+          <h1>Produtos</h1>
+        </div>    
       </div>
     );
   }
