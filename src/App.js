@@ -1,24 +1,30 @@
 import React, { Component } from 'react'
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
+import Home from './Home'
+import Sobre from './Sobre'
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
+      <Router>
+        <div>
+          <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
+            <div className="container">
+              <a href="/" className="navbar-brand">Gerenciador de Produtos</a>
+              <ul className="navbar-nav ">
+                <li className="nav-item"><Link to="/" className="nav-link">Home</Link></li>
+                <li className="nav-item"><a href="/" className="nav-link">about</a></li>
+                <li className="nav-item"><a href="/" className="nav-link">about</a></li>
+                <li className="nav-item"><Link to="/sobre" className="nav-link">about</Link></li>
+              </ul>
+            </div>
+          </nav>
           <div className="container">
-            <a href="/" className="navbar-brand">Gerenciador de Produtos</a>
-            <ul className="navbar-nav ">
-              <li className="nav-item"><a href="/" className="nav-link">about</a></li>
-              <li className="nav-item"><a href="/" className="nav-link">about</a></li>
-              <li className="nav-item"><a href="/" className="nav-link">about</a></li>
-              <li className="nav-item"><a href="/" className="nav-link">about</a></li>
-            </ul>
-          </div>
-        </nav>
-        <div className="container">
-          <h1>Produtos</h1>
-        </div>    
-      </div>
+            <Route exact path='/' component={Home} />
+            <Route exact path='/sobre' component={Sobre} /> 
+          </div>    
+        </div>
+      </Router>
     );
   }
 }
