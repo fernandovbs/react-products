@@ -1,10 +1,27 @@
 import React, { Component } from 'react'
 import { Route, Link } from 'react-router-dom'
+import axios from 'axios'
 
 import ProdutosHome from './ProdutosHome'
 import Categoria from './Categoria'
 
 export default class Produtos extends Component{
+    constructor(props) {
+        super(props)
+        this.state = {
+            categorias: []
+        }
+    }
+
+    componentDidMount() {
+        axios
+        .get('localhost:3001/categorias')
+        .then(res => {
+            this.setState({
+                categorias: res.data
+            })
+        })
+    }
     render(){
         const { match } = this.props
 
