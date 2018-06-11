@@ -24,8 +24,7 @@ export default class Produtos extends Component{
     }
 
     renderCategoria = (cat) => {
-        console.log(cat)
-        return <li><Link to={`/produtos/categorias/${cat.id}`}>{cat.categoria}</Link></li>
+        return <li key={cat.id}><Link to={`/produtos/categorias/${cat.id}`}>{cat.categoria}</Link></li>
     }
 
     render(){
