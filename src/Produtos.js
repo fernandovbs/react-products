@@ -26,6 +26,10 @@ export default class Produtos extends Component{
     renderCategoria = (cat) => {
         return <li key={cat.id}><Link to={`/produtos/categorias/${cat.id}`}>{cat.categoria}</Link></li>
     }
+    
+    handleNewCategory = (e) => {
+        console.log(e.keyCode)
+    }
 
     render(){
         const { match } = this.props
@@ -38,6 +42,12 @@ export default class Produtos extends Component{
                 <ul>
                     { categorias.map( this.renderCategoria ) }
                 </ul>
+                <div className="well">
+                    <input onKeyUp={this.handleNewCategory} 
+                    type='text'
+                    ref='category'
+                    placeholder='Nova Categoria' />
+                </div>
             </div>
             <div className='col-md-10'>
                 <h1>Produtos</h1>
