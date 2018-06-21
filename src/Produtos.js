@@ -11,9 +11,11 @@ export default class Produtos extends Component{
         this.state = {
             categorias: []
         }
+        this.handleNewCategory =  this.handleNewCategory.bind(this)
+        this.loadCategorias = this.loadCategorias.bind(this)
     }
 
-    componentDidMount() {
+    loadCategorias(){
         axios
         .get('http://localhost:3001/categorias')
         .then(res => {
@@ -22,13 +24,24 @@ export default class Produtos extends Component{
             })
         })
     }
+    componentDidMount() {
+        this.loadCategorias()
+    }
 
     renderCategoria = (cat) => {
         return <li key={cat.id}><Link to={`/produtos/categorias/${cat.id}`}>{cat.categoria}</Link></li>
     }
     
     handleNewCategory = (e) => {
-        console.log(e.keyCode)
+        if (e.keyCode === 13) {
+            axios
+            .post('http://localhost:3001/categorias', 
+            {categoria: this.refs.category.value})
+            .then(res => {
+                this.loadCategorias()
+                this.refs.category.value = ''
+            })
+        }
     }
 
     render(){
@@ -46,7 +59,7 @@ export default class Produtos extends Component{
                     <input onKeyUp={this.handleNewCategory} 
                     type='text'
                     ref='category'
-                    placeholder='Nova Categoria' />
+                    placeholder='Nova Categoria' style={{width: '100%'}}/>
                 </div>
             </div>
             <div className='col-md-10'>
