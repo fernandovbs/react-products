@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Route, Link } from 'react-router-dom'
 import axios from 'axios'
 
+import apis from './Api'
 import ProdutosHome from './ProdutosHome'
 import Categoria from './Categoria'
 
@@ -16,8 +17,7 @@ export default class Produtos extends Component{
     }
 
     loadCategorias(){
-        axios
-        .get('http://localhost:3001/categorias')
+        apis.getCategorias()
         .then(res => {
             this.setState({
                 categorias: res.data
@@ -26,8 +26,7 @@ export default class Produtos extends Component{
     }
 
     handleDeleteCategoria = catId => {
-        axios
-        .delete(`http://localhost:3001/categorias/${catId}`)
+        apis.deleteCategoria(catId)
         .then(res => {
             this.loadCategorias()
         })
