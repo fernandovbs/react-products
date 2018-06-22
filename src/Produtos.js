@@ -24,14 +24,15 @@ export default class Produtos extends Component{
             })
         })
     }
-    componentDidMount() {
-        this.loadCategorias()
+
+    handleDeleteCategoria = catId => {
+        axios
+        .delete(`http://localhost:3001/categorias/${catId}`)
+        .then(res => {
+            this.loadCategorias()
+        })
     }
 
-    renderCategoria = (cat) => {
-        return <li key={cat.id}><Link to={`/produtos/categorias/${cat.id}`}>{cat.categoria}</Link></li>
-    }
-    
     handleNewCategory = (e) => {
         if (e.keyCode === 13) {
             axios
@@ -43,7 +44,20 @@ export default class Produtos extends Component{
             })
         }
     }
-
+    
+    componentDidMount() {
+        this.loadCategorias()
+    }
+    
+    renderCategoria = (cat) => {
+        return  (<li key={cat.id}>
+                    <button className='btn btn-sm' onClick={() => {this.handleDeleteCategoria(cat.id)}}>
+                        <span className='fa fa-remove'></span>
+                    </button>
+                    <Link to={`/produtos/categorias/${cat.id}`}>{cat.categoria}</Link>
+                </li>)
+    }
+    
     render(){
         const { match } = this.props
         const { categorias } = this.state
