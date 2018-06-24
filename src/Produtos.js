@@ -34,9 +34,8 @@ export default class Produtos extends Component{
 
     handleNewCategory = (e) => {
         if (e.keyCode === 13) {
-            axios
-            .post('http://localhost:3001/categorias', 
-            {categoria: this.refs.category.value})
+            apis
+            .postCategoria({categoria: this.refs.category.value})
             .then(res => {
                 this.loadCategorias()
                 this.refs.category.value = ''
