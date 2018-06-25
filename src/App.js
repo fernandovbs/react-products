@@ -5,6 +5,43 @@ import Sobre from './Sobre'
 import Produtos from './Produtos'
 
 class App extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      categorias: []
+    }
+    this.loadCategorias = this.loadCategorias.bind(this)
+    this.handleDeleteCategoria = this.handleDeleteCategoria.bind(this)
+    this.handleNewCategory = this.handleNewCategory(this)
+  }
+
+  loadCategorias(){
+      this.props.apis.getCategorias()
+      .then(res => {
+        this.setState({
+            categorias: res.data
+        })
+      })
+  }
+
+  handleDeleteCategoria = catId => {
+    this.props.apis.deleteCategoria(catId)
+    .then(res => {
+        this.loadCategorias()
+    })
+  }
+
+  handleNewCategory = (e) => {
+    if (e.keyCode === 13) {
+        this.props.apis
+        .postCategoria({categoria: this.refs.category.value})
+        .then(res => {
+            this.loadCategorias()
+            this.refs.category.value = ''
+        })
+      }
+  }
+
   render() {
     return (
       <Router>
@@ -22,7 +59,15 @@ class App extends Component {
           <div className="container">
             <Route exact path='/' component={Home} />
             <Route exact path='/sobre' component={Sobre} /> 
-            <Route path='/produtos' component={Produtos} />             
+            <Route path='/produtos' render={(props) => {
+              return (
+              <Produtos {...props} 
+              loadCategorias={this.loadCategorias}
+              handleDeleteCategoria={this.handleDeleteCategoria}
+              handleNewCategory={this.handleNewCategory}
+              categorias={this.state.categorias}
+              />
+            )}} />             
           </div>    
         </div>
       </Router>
