@@ -12,7 +12,7 @@ class App extends Component {
     }
     this.loadCategorias = this.loadCategorias.bind(this)
     this.handleDeleteCategoria = this.handleDeleteCategoria.bind(this)
-    this.handleNewCategory = this.handleNewCategory(this)
+    this.handleNewCategoria = this.handleNewCategoria.bind(this)
   }
 
   loadCategorias(){
@@ -31,15 +31,12 @@ class App extends Component {
     })
   }
 
-  handleNewCategory = (e) => {
-    if (e.keyCode === 13) {
-        this.props.apis
-        .postCategoria({categoria: this.refs.category.value})
-        .then(res => {
-            this.loadCategorias()
-            this.refs.category.value = ''
-        })
-      }
+  handleNewCategoria = (categoria) => {
+    this.props.apis
+    .postCategoria({categoria: categoria})
+    .then(res => {
+        this.loadCategorias()
+    })
   }
 
   render() {
@@ -64,7 +61,7 @@ class App extends Component {
               <Produtos {...props} 
               loadCategorias={this.loadCategorias}
               handleDeleteCategoria={this.handleDeleteCategoria}
-              handleNewCategory={this.handleNewCategory}
+              handleNewCategoria={this.handleNewCategoria}
               categorias={this.state.categorias}
               />
             )}} />             

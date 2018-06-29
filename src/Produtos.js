@@ -7,7 +7,10 @@ import Categoria from './Categoria'
 export default class Produtos extends Component{    
 
     handleNewCategoria = (e) => {
-        this.props.handleNewCategory(e)
+        if (e.keyCode === 13) {
+            this.props.handleNewCategoria(this.refs.category.value)
+            this.refs.category.value = ''
+        }
     }
     
     componentDidMount() {
