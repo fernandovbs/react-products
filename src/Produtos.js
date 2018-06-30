@@ -6,9 +6,9 @@ import Categoria from './Categoria'
 
 export default class Produtos extends Component{    
 
-    handleNewCategoria = (e) => {
+    handleNewCategoria = e => {
         if (e.keyCode === 13) {
-            this.props.handleNewCategoria(this.refs.category.value)
+            this.props.handleNewCategoria({categoria: this.refs.category.value})
             this.refs.category.value = ''
         }
     }
@@ -34,7 +34,7 @@ export default class Produtos extends Component{
             <div className='col-md-2'>
                 <h3>Categories</h3>
                 <ul>
-                    { categorias.map( this.renderCategoria ) }
+                    { categorias.map(this.renderCategoria) }
                 </ul>
                 <div className="well">
                     <input onKeyUp={this.handleNewCategoria} 

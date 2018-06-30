@@ -10,6 +10,7 @@ class App extends Component {
     this.state = {
       categorias: []
     }
+    
     this.loadCategorias = this.loadCategorias.bind(this)
     this.handleDeleteCategoria = this.handleDeleteCategoria.bind(this)
     this.handleNewCategoria = this.handleNewCategoria.bind(this)
@@ -17,26 +18,18 @@ class App extends Component {
 
   loadCategorias(){
       this.props.apis.getCategorias()
-      .then(res => {
-        this.setState({
-            categorias: res.data
-        })
-      })
+      .then(res => this.setState( {categorias: res.data} ))
   }
 
   handleDeleteCategoria = catId => {
     this.props.apis.deleteCategoria(catId)
-    .then(res => {
-        this.loadCategorias()
-    })
+    .then(res => this.loadCategorias())
   }
 
-  handleNewCategoria = (categoria) => {
+  handleNewCategoria = categoria => {
     this.props.apis
-    .postCategoria({categoria: categoria})
-    .then(res => {
-        this.loadCategorias()
-    })
+    .postCategoria(categoria)
+    .then(res => this.loadCategorias())
   }
 
   render() {
