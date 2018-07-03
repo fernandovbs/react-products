@@ -29,7 +29,7 @@ export default class Categoria extends Component {
     }
 
     renderProduto = (produto) => {
-        return <p className="well">{produto.produto}</p>
+        return <p key={produto.id} className="well">{produto.produto}</p>
     }
 
     componentDidMount(){
@@ -42,7 +42,7 @@ export default class Categoria extends Component {
 //        return <h1>{this.state.categoria}</h1>
         return (
             <div>
-                <h1>{this.state.categoria.categoria}</h1>
+                <h3>{this.state.categoria.categoria}</h3>
                 {this.state.produtos.map(this.renderProduto)}
             </div>
         )

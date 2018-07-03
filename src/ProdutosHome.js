@@ -2,7 +2,7 @@ import React from 'react'
 
 const ProdutosHome =  () => (
     <div>
-        <h2>Product details</h2>
+        <h3>Select a category</h3>
     </div>
 )
 
