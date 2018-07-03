@@ -14,6 +14,7 @@ class App extends Component {
     this.loadCategorias = this.loadCategorias.bind(this)
     this.handleDeleteCategoria = this.handleDeleteCategoria.bind(this)
     this.handleNewCategoria = this.handleNewCategoria.bind(this)
+    this.handleEditCategoria = this.handleEditCategoria.bind(this)    
   }
 
   loadCategorias(){
@@ -32,6 +33,17 @@ class App extends Component {
     .then(res => this.loadCategorias())
   }
 
+  handleEditCategoria = categoria => {
+    this.props.apis
+    .editCategoria(categoria)
+    .then(res => this.loadCategorias())
+  }
+
+  handleNewProduto = produto => {
+    this.props.apis
+    .postProduto(produto)
+  }
+  
   render() {
     return (
       <Router>
@@ -55,7 +67,10 @@ class App extends Component {
               loadCategorias={this.loadCategorias}
               handleDeleteCategoria={this.handleDeleteCategoria}
               handleNewCategoria={this.handleNewCategoria}
+              handleEditCategoria={this.handleEditCategoria}
               categorias={this.state.categorias}
+
+              handleNewProduto={this.handleNewProduto}
               />
             )}} />             
           </div>    
