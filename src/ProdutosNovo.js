@@ -9,7 +9,7 @@ class ProdutosNovo extends Component{
         this.state = {redirect: false}
     }
 
-    handleNewProduto = e => {
+    handleNewProduto(e) {
         if (e.keyCode === 13) {
             const produto = {
                 categoria: this.refs.categoria.value,
