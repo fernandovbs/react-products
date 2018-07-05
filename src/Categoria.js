@@ -1,7 +1,15 @@
 import React, { Component } from 'react'
 
 export default class Categoria extends Component {    
+    constructor(props){
+        super(props)
+        this.state = {
+            id: null
+        }
+    }
+
     loadData = (id) => {
+        this.setState({id: id})
         this.props.handleGetProdutos(id)
         this.props.handleLoadCategoria(id)
     }
@@ -14,7 +22,7 @@ export default class Categoria extends Component {
         this.loadData(this.props.match.params.catId)
     }
     componentWillReceiveProps(newProps) {
-        newProps !== this.props &&
+        newProps.match.params.catId !== this.state.id &&
         this.loadData(newProps.match.params.catId)
     }
     render(){

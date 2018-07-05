@@ -22,7 +22,6 @@ class App extends Component {
   }
 
   handleLoadCategoria = catId => {
-    Number(catId) !== Number(this.state.categoria.id) &&
     this.props.apis.loadCategoria(catId)
     .then(res => {
       this.setState({
@@ -56,7 +55,6 @@ class App extends Component {
   handleNewProduto = produto => this.props.apis.postProduto(produto)
 
   handleGetProdutos = catId => {
-    Number(catId) !== Number(this.state.categoria.id) &&
     this.props.apis.getProdutos(catId)
     .then(res => {
       this.setState({
