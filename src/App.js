@@ -8,13 +8,27 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      categorias: []
+      categorias: [],
+      produtos:[],
+      categoria:{id:'', categoria:''}
     }
     
     this.loadCategorias = this.loadCategorias.bind(this)
     this.handleDeleteCategoria = this.handleDeleteCategoria.bind(this)
     this.handleNewCategoria = this.handleNewCategoria.bind(this)
     this.handleEditCategoria = this.handleEditCategoria.bind(this)    
+    this.handleLoadCategoria = this.handleLoadCategoria.bind(this)
+    this.handleGetProdutos = this.handleGetProdutos.bind(this)        
+  }
+
+  handleLoadCategoria = catId => {
+    Number(catId) !== Number(this.state.categoria.id) &&
+    this.props.apis.loadCategoria(catId)
+    .then(res => {
+      this.setState({
+          categoria: res.data
+      })
+    })
   }
 
   loadCategorias(){
@@ -39,9 +53,16 @@ class App extends Component {
     .then(res => this.loadCategorias())
   }
 
-  handleNewProduto = produto => {
-    this.props.apis
-    .postProduto(produto)
+  handleNewProduto = produto => this.props.apis.postProduto(produto)
+
+  handleGetProdutos = catId => {
+    Number(catId) !== Number(this.state.categoria.id) &&
+    this.props.apis.getProdutos(catId)
+    .then(res => {
+      this.setState({
+          produtos: res.data
+      })
+    })        
   }
   
   render() {
@@ -63,14 +84,17 @@ class App extends Component {
             <Route exact path='/sobre' component={Sobre} /> 
             <Route path='/produtos' render={(props) => {
               return (
-              <Produtos {...props} 
+              <Produtos {...props}
+              handleLoadCategoria={this.handleLoadCategoria}
               loadCategorias={this.loadCategorias}
               handleDeleteCategoria={this.handleDeleteCategoria}
               handleNewCategoria={this.handleNewCategoria}
               handleEditCategoria={this.handleEditCategoria}
               categorias={this.state.categorias}
-
+              handleGetProdutos={this.handleGetProdutos}  
               handleNewProduto={this.handleNewProduto}
+              categoria={this.state.categoria}
+              produtos={this.state.produtos}
               />
             )}} />             
           </div>    

@@ -100,7 +100,13 @@ export default class Produtos extends Component{
                     categorias={categorias}
                     handleNewProduto={this.props.handleNewProduto}
                 />}} />
-                <Route exact path={match.url+'/categorias/:catId'} component={Categoria} />    
+                <Route exact path={match.url+'/categorias/:catId'} render={(props) => {
+                    return <Categoria {...props}
+                    handleLoadCategoria={this.props.handleLoadCategoria}
+                    handleGetProdutos={this.props.handleGetProdutos}
+                    categoria={this.props.categoria}
+                    produtos={this.props.produtos}                    
+                />}} />    
             </div>
         </div>
         )
