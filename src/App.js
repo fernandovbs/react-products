@@ -19,6 +19,7 @@ class App extends Component {
     this.handleEditCategoria = this.handleEditCategoria.bind(this)    
     this.handleLoadCategoria = this.handleLoadCategoria.bind(this)
     this.handleGetProdutos = this.handleGetProdutos.bind(this)        
+    this.handleDeleteProduto = this.handleDeleteProduto.bind(this)
   }
 
   handleLoadCategoria = catId => {
@@ -62,6 +63,11 @@ class App extends Component {
       })
     })        
   }
+
+  handleDeleteProduto = prodId => {
+    return this.props.apis.deleteProduto(prodId)
+  }
+
   
   render() {
     return (
@@ -93,6 +99,7 @@ class App extends Component {
               handleNewProduto={this.handleNewProduto}
               categoria={this.state.categoria}
               produtos={this.state.produtos}
+              handleDeleteProduto={this.handleDeleteProduto}
               />
             )}} />             
           </div>    

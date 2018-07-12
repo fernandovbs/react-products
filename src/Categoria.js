@@ -15,7 +15,13 @@ export default class Categoria extends Component {
     }
 
     renderProduto = (produto) => {
-        return <p key={produto.id} className="well">{produto.produto}</p>
+        return (<div key={produto.id}>
+                    <p className="well">{produto.produto}
+                        <button onClick={() => {
+                            this.props.handleDeleteProduto(produto.id)
+                            this.loadData()
+                        }}>Apagar</button></p>
+                </div>)
     }
 
     componentDidMount(){

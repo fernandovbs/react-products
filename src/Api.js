@@ -12,7 +12,8 @@ const apis = {
     editCategoria: categoria => api.put(`categorias/${categoria.id}`, categoria),
 
     postProduto: produto => api.post('produtos', produto),    
-    getProdutos: (categoria) => api.get(`http://localhost:3001/produtos?categoria=${categoria}`)
+    getProdutos: (categoria) => api.get(`http://localhost:3001/produtos?categoria=${categoria}`),
+    deleteProduto : prodId => api.delete(`produtos/${prodId}`),
 }
 
 export default apis

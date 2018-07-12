@@ -106,6 +106,7 @@ export default class Produtos extends Component{
                     handleGetProdutos={this.props.handleGetProdutos}
                     categoria={this.props.categoria}
                     produtos={this.props.produtos}                    
+                    handleDeleteProduto={this.props.handleDeleteProduto}
                 />}} />    
             </div>
         </div>
