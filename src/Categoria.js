@@ -19,7 +19,7 @@ export default class Categoria extends Component {
                     <p className="well">{produto.produto}
                         <button onClick={() => {
                             this.props.handleDeleteProduto(produto.id)
-                            this.loadData()
+                            this.loadData(produto.categoria)
                         }}>Apagar</button></p>
                 </div>)
     }
