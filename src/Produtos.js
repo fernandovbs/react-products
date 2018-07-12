@@ -3,6 +3,7 @@ import { Route, Link } from 'react-router-dom'
 
 import ProdutosHome from './ProdutosHome'
 import ProdutosNovo from './ProdutosNovo'
+import ProdutosEdit from './ProdutosEdit'
 import Categoria from './Categoria'
 
 export default class Produtos extends Component{    
